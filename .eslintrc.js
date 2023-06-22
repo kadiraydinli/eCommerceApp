@@ -21,5 +21,12 @@ module.exports = {
       },
     ],
   },
-  plugins: ['unused-imports'],
+  plugins: ['unused-imports', 'prettier'],
+  'prettier/prettier': [
+    'error',
+    {
+      singleQuote: true,
+      parser: 'flow',
+    },
+  ],
 };

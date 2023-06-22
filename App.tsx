@@ -1,20 +1,9 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text } from 'react-native';
+
+import RootNavigator from '@/navigators/RootNavigator';
 
 function App(): JSX.Element {
-  return (
-    <SafeAreaView style={styles.container}>
-      <Text>E-Commerce App</Text>
-    </SafeAreaView>
-  );
+  return <RootNavigator />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default App;
