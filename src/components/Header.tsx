@@ -30,20 +30,22 @@ const Header: React.FC<HeaderProps> = ({
   options,
   style,
 }) => {
-  const theme = useTheme();
+  const { isDarkTheme, colors } = useTheme();
 
   const onMenu = () => {
     navigation.dispatch(DrawerActions.openDrawer());
   };
 
+  const backgroundColor = isDarkTheme ? colors.black : colors.white;
+
   return (
-    <SafeAreaView style={[styles.container, style]}>
+    <SafeAreaView style={[styles.container, { backgroundColor }, style]}>
       <Animated.View style={options.headerStyle}>
-        <Text style={[styles.text, { color: theme.colors.text }]}>{title}</Text>
+        <Text style={[styles.text, { color: colors.text }]}>{title}</Text>
       </Animated.View>
 
       <TouchableOpacity activeOpacity={0.7} onPress={onMenu}>
-        <Icon name="menu" color={theme.colors.text} size={25} />
+        <Icon name="menu" color={colors.text} size={25} />
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -53,7 +55,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginHorizontal: 12,
+    paddingHorizontal: 12,
+    paddingTop: 8,
   },
   text: {
     fontSize: 20,
