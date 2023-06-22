@@ -40,6 +40,7 @@ const BottomTabsNavigator = () => {
         name="Home"
         component={HomeScreen}
         options={{
+          headerTitle: 'Home',
           tabBarIcon: ({ focused, size }) => (
             <Icon
               name="home"
@@ -53,6 +54,7 @@ const BottomTabsNavigator = () => {
         name="Deals"
         component={DealsScreen}
         options={{
+          headerTitle: 'Hottest Deals',
           tabBarIcon: ({ focused, size }) => (
             <Icon
               name="local-offer"
@@ -66,6 +68,7 @@ const BottomTabsNavigator = () => {
         name="Basket"
         component={BasketScreen}
         options={{
+          headerTitle: 'Basket',
           tabBarIcon: ({ focused, size }) => (
             <Icon
               name="shopping-bag"
@@ -79,6 +82,7 @@ const BottomTabsNavigator = () => {
         name="Profile"
         component={ProfileScreen}
         options={{
+          headerTitle: 'Profile',
           tabBarIcon: ({ focused, size }) => (
             <Icon
               name="person"
