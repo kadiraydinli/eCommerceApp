@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { StatusBar } from 'react-native';
+import { Platform, StatusBar } from 'react-native';
 import SystemNavigationBar from 'react-native-system-navigation-bar';
 
 import {
@@ -21,12 +21,17 @@ const RootNavigator = () => {
 
   useEffect(() => {
     const changeBarColor = async () => {
-      const color = isDarkTheme ? colors.black : colors.white;
-      StatusBar.setBackgroundColor(color);
-      await SystemNavigationBar.setNavigationColor(
-        color,
-        isDarkTheme ? 'light' : 'dark',
-      );
+      StatusBar.setBarStyle(isDarkTheme ? 'light-content' : 'dark-content');
+
+      if (Platform.OS === 'android') {
+        const color = isDarkTheme ? colors.black : colors.white;
+        StatusBar.setBackgroundColor(color);
+        await SystemNavigationBar.setNavigationColor(
+          color,
+          isDarkTheme ? 'light' : 'dark',
+          'both',
+        );
+      }
     };
 
     changeBarColor();
