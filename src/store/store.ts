@@ -15,9 +15,17 @@ import {
 import { configureStore, combineReducers, getDefaultMiddleware } from '@reduxjs/toolkit';
 
 import theme from './theme';
+import products from './products';
+import productTiming from './productTiming';
+import hotDeals from './hotDeals';
+import basket from './basket';
 
 const reducers = combineReducers({
     theme,
+    products,
+    productTiming,
+    hotDeals,
+    basket,
 });
 
 const storage = new MMKV();
@@ -39,7 +47,7 @@ export const reduxStorage: Storage = {
 const persistConfig = {
     key: 'root',
     storage: reduxStorage,
-    whitelist: ['theme'],
+    whitelist: ['theme', 'basket'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
