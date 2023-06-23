@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { Spacing } from '@/theme';
 import useTheme from '@/hooks/useTheme';
 
 import ToggleThemeButton from './ToggleThemeButton';
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 16,
+    padding: Spacing.medium,
   },
   text: {
     fontSize: 20,

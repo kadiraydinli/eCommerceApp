@@ -15,7 +15,9 @@ import {
   BottomTabNavigationProp,
 } from '@react-navigation/bottom-tabs';
 import { DrawerActions, ParamListBase } from '@react-navigation/native';
+
 import useTheme from '@/hooks/useTheme';
+import { Spacing } from '@/theme';
 
 interface HeaderProps {
   title: string;
@@ -44,7 +46,10 @@ const Header: React.FC<HeaderProps> = ({
         <Text style={[styles.text, { color: colors.text }]}>{title}</Text>
       </Animated.View>
 
-      <TouchableOpacity activeOpacity={0.7} onPress={onMenu}>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={onMenu}
+        style={styles.menuButton}>
         <Icon name="menu" color={colors.text} size={25} />
       </TouchableOpacity>
     </SafeAreaView>
@@ -55,12 +60,15 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 12,
-    paddingTop: 8,
+    paddingTop: Spacing.extraSmall,
   },
   text: {
     fontSize: 20,
     fontFamily: 'Poppins-SemiBold',
+    paddingLeft: Spacing.small,
+  },
+  menuButton: {
+    paddingRight: Spacing.small,
   },
 });
 
