@@ -11,6 +11,7 @@ import BasketScreen from '@/screens/Basket';
 import ProfileScreen from '@/screens/Profile';
 import useTheme from '@/hooks/useTheme';
 import Header from '@/components/Header';
+import useBasket from '@/hooks/useBasket';
 
 import { BottomTabParamList } from './types';
 
@@ -18,6 +19,7 @@ const Tab = createBottomTabNavigator<BottomTabParamList>();
 
 const BottomTabsNavigator = () => {
   const { activeColor, deActiveColor } = useTheme();
+  const { basketCount } = useBasket();
 
   return (
     <Tab.Navigator
@@ -69,6 +71,7 @@ const BottomTabsNavigator = () => {
         component={BasketScreen}
         options={{
           headerTitle: 'Basket',
+          tabBarBadge: basketCount || undefined,
           tabBarIcon: ({ focused, size }) => (
             <Icon
               name="shopping-bag"
