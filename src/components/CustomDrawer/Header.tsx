@@ -1,17 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { Spacing } from '@/theme';
-import useTheme from '@/hooks/useTheme';
 
 import ToggleThemeButton from './ToggleThemeButton';
+import Typography from '../Typography';
 
 const Header = () => {
-  const { colors } = useTheme();
-
   return (
     <View style={styles.container}>
-      <Text style={[styles.text, { color: colors.text }]}>E-Commerce</Text>
+      <Typography style={styles.text}>E-Commerce</Typography>
       <ToggleThemeButton />
     </View>
   );

@@ -1,12 +1,12 @@
-import React, { useMemo } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React from 'react';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
-import useTheme from '@/hooks/useTheme';
 import { Product as ProductType } from '@/store/products/types';
 import { Spacing } from '@/theme';
 
 import { getDiscountRate, getResizedImageUrl } from './helper';
+import Typography from '../Typography';
 
 interface MasonryProductProps {
   product: ProductType;
@@ -14,7 +14,6 @@ interface MasonryProductProps {
 
 const MasonryProduct: React.FC<MasonryProductProps> = ({ product }) => {
   const { name, image, price } = product;
-  const { colors } = useTheme();
 
   const { resizedImageUrl, randomSize } = getResizedImageUrl(image);
 
@@ -37,18 +36,14 @@ const MasonryProduct: React.FC<MasonryProductProps> = ({ product }) => {
           />
         </View>
         <View style={styles.bottomContent}>
-          <Text
-            numberOfLines={2}
-            style={[styles.title, { color: colors.text }]}>
+          <Typography numberOfLines={2} style={styles.title}>
             {name}
-          </Text>
+          </Typography>
           <View style={{ flexDirection: 'row', gap: 4, marginTop: 4 }}>
-            <Text style={[styles.priceText, { color: colors.active }]}>
-              ${price}
-            </Text>
-            <Text style={[styles.discountText, { color: colors.text }]}>
+            <Typography style={styles.priceText}>${price}</Typography>
+            <Typography style={styles.discountText}>
               %{discountRate} OFF
-            </Text>
+            </Typography>
           </View>
         </View>
       </TouchableOpacity>

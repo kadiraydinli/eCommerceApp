@@ -19,6 +19,8 @@ import { DrawerActions, ParamListBase } from '@react-navigation/native';
 import useTheme from '@/hooks/useTheme';
 import { Spacing } from '@/theme';
 
+import Typography from './Typography';
+
 interface HeaderProps {
   title: string;
   navigation: BottomTabNavigationProp<ParamListBase, string, undefined>;
@@ -43,7 +45,7 @@ const Header: React.FC<HeaderProps> = ({
   return (
     <SafeAreaView style={[styles.container, { backgroundColor }, style]}>
       <Animated.View style={options.headerStyle}>
-        <Text style={[styles.text, { color: colors.text }]}>{title}</Text>
+        <Typography style={styles.text}>{title}</Typography>
       </Animated.View>
 
       <TouchableOpacity

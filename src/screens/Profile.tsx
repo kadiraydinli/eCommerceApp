@@ -1,16 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { BottomTabParamList } from '@/navigators/types';
+import Typography from '@/components/Typography';
 
 type Props = NativeStackScreenProps<BottomTabParamList, 'Profile'>;
 
 const ProfileScreen: React.FC<Props> = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text>ProfileScreen</Text>
+      <Typography>Profile Screen</Typography>
     </View>
   );
 };
