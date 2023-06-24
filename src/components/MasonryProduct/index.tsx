@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
@@ -22,7 +22,7 @@ const MasonryProduct: React.FC<MasonryProductProps> = ({ product }) => {
 
   const { resizedImageUrl, randomSize } = getResizedImageUrl(image);
 
-  const discountRate = getDiscountRate();
+  const discountRate = useMemo(() => getDiscountRate(), []);
 
   const priceText = currencyFormat(price);
 
@@ -65,8 +65,8 @@ const MasonryProduct: React.FC<MasonryProductProps> = ({ product }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
     padding: Spacing.small,
+    marginBottom: 1,
   },
   image: {
     width: '100%',
