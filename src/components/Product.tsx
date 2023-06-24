@@ -4,6 +4,7 @@ import FastImage from 'react-native-fast-image';
 
 import { Product as ProductType } from '@/store/products/types';
 import { currencyFormat } from '@/utils/currencyFormat';
+import useBasketAnimation from '@/hooks/useBasketAnimation';
 import { Spacing } from '@/theme';
 import useBasket from '@/hooks/useBasket';
 
@@ -16,10 +17,12 @@ interface ProductProps {
 const Product: React.FC<ProductProps> = ({ product }) => {
   const { id, name, image, price } = product;
   const { add } = useBasket();
+  const { onPlay } = useBasketAnimation();
 
   const priceText = currencyFormat(price);
 
   const onPress = () => {
+    onPlay();
     add(id);
   };
 

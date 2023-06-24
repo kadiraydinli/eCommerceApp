@@ -4,11 +4,12 @@ import FastImage from 'react-native-fast-image';
 
 import { Product as ProductType } from '@/store/products/types';
 import { currencyFormat } from '@/utils/currencyFormat';
+import useBasket from '@/hooks/useBasket';
 import { Colors, Spacing } from '@/theme';
+import useBasketAnimation from '@/hooks/useBasketAnimation';
 
 import { getDiscountRate, getResizedImageUrl } from './helper';
 import Typography from '../Typography';
-import useBasket from '@/hooks/useBasket';
 
 interface MasonryProductProps {
   product: ProductType;
@@ -17,6 +18,7 @@ interface MasonryProductProps {
 const MasonryProduct: React.FC<MasonryProductProps> = ({ product }) => {
   const { id, name, image, price } = product;
   const { add } = useBasket();
+  const { onPlay } = useBasketAnimation();
 
   const { resizedImageUrl, randomSize } = getResizedImageUrl(image);
 
@@ -25,6 +27,7 @@ const MasonryProduct: React.FC<MasonryProductProps> = ({ product }) => {
   const priceText = currencyFormat(price);
 
   const onPress = () => {
+    onPlay();
     add(id);
   };
 
