@@ -38,8 +38,6 @@ const useDealProducts = () => {
 
     const dealProducts = filteredProducts(filteredDealProducts);
 
-    console.log(dealProducts)
-
     return {
         getDealProducts,
         dealProducts,
