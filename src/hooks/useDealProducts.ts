@@ -5,14 +5,16 @@ import { useCallback, useEffect, useMemo } from "react";
 
 const useDealProducts = () => {
     const dispatch = useAppDispatch();
-    const { status: statusProduct, products } = useAppSelector(
+    const { status: statusProduct, products, error: errorProduct } = useAppSelector(
         store => store.products,
     );
-    const { status: statusDeals, productIds } = useAppSelector(
+    const { status: statusDeals, productIds, error: errorDeals } = useAppSelector(
         store => store.hotDeals,
     );
 
     const isLoading = statusProduct === 'loading' || statusDeals === 'loading';
+
+    const isError = errorProduct !== null || errorDeals !== null;
 
     const getDealProducts = useCallback(() => {
         dispatch(fetchProducts());
@@ -33,6 +35,7 @@ const useDealProducts = () => {
         getDealProducts,
         dealProducts,
         isLoading,
+        isError
     }
 };
 

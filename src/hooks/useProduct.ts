@@ -9,6 +9,8 @@ const useProduct = () => {
 
     const isLoading = status === 'loading';
 
+    const isError = error !== null;
+
     const getProducts = useCallback(() => {
         dispatch(fetchProducts());
     }, []);
@@ -18,8 +20,8 @@ const useProduct = () => {
     return {
         getProducts,
         isLoading,
-        products,
-        error
+        isError,
+        products
     }
 };
 

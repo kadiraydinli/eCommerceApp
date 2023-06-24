@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { RefreshControl, StyleSheet, View } from 'react-native';
 
 import { MasonryFlashList } from '@shopify/flash-list';
@@ -9,12 +9,24 @@ import MasonryProduct from '@/components/MasonryProduct';
 import useTheme from '@/hooks/useTheme';
 import { Spacing } from '@/theme';
 import useDealProducts from '@/hooks/useDealProducts';
+import EmptyState from '@/components/EmptyState';
 
 type Props = NativeStackScreenProps<BottomTabParamList, 'Deals'>;
 
 const DealsScreen: React.FC<Props> = ({ navigation }) => {
   const { colors } = useTheme();
-  const { dealProducts, isLoading, getDealProducts } = useDealProducts();
+  const { dealProducts, getDealProducts, isLoading, isError } =
+    useDealProducts();
+
+  const ListEmptyComponent = useMemo(
+    () =>
+      isError ? (
+        <EmptyState text="Something went wrong!" />
+      ) : !dealProducts?.length && !isLoading ? (
+        <EmptyState icon="shopping-bag" text="No Product!" />
+      ) : null,
+    [isError, isLoading, dealProducts.length],
+  );
 
   return (
     <View style={styles.container}>
@@ -31,6 +43,7 @@ const DealsScreen: React.FC<Props> = ({ navigation }) => {
             onRefresh={getDealProducts}
           />
         }
+        ListEmptyComponent={ListEmptyComponent}
         contentContainerStyle={{
           padding: Spacing.extraSmall,
         }}
