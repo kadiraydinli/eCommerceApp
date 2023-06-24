@@ -12,7 +12,7 @@ export const fetchProductTimings = createAsyncThunk('productTimings/fetchProduct
 
 const slice = createSlice({
     name: 'ProductTimingsSlice',
-    initialState: { status: "idle", productTiming: [], error: null } as ProductTimingState,
+    initialState: { status: "idle", productTimings: [], error: null } as ProductTimingState,
     reducers: {},
     extraReducers(builder) {
         builder
@@ -21,7 +21,7 @@ const slice = createSlice({
             })
             .addCase(fetchProductTimings.fulfilled, (state, action) => {
                 state.status = 'idle';
-                state.productTiming = action.payload;
+                state.productTimings = action.payload;
             })
             .addCase(fetchProductTimings.rejected, (state, action) => {
                 state.status = 'failed';

@@ -8,6 +8,6 @@ export type ProductTiming = {
 
 export type ProductTimingState = {
     status: StatusType;
-    productTiming: ProductTiming[] | null;
+    productTimings: ProductTiming[] | null;
     error: string | null;
 };
