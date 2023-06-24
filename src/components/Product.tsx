@@ -1,21 +1,33 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
-import useTheme from '@/hooks/useTheme';
 import { Product as ProductType } from '@/store/products/types';
+import { currencyFormat } from '@/utils/currencyFormat';
 import { Spacing } from '@/theme';
+import useBasket from '@/hooks/useBasket';
+
+import Typography from './Typography';
 
 interface ProductProps {
   product: ProductType;
 }
 
 const Product: React.FC<ProductProps> = ({ product }) => {
-  const { name, image, price } = product;
-  const { colors } = useTheme();
+  const { id, name, image, price } = product;
+  const { add } = useBasket();
+
+  const priceText = currencyFormat(price);
+
+  const onPress = () => {
+    add(id);
+  };
 
   return (
-    <TouchableOpacity activeOpacity={0.8} style={styles.container}>
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={onPress}
+      style={styles.container}>
       <View style={styles.image}>
         <FastImage
           style={{ ...StyleSheet.absoluteFillObject }}
@@ -27,10 +39,10 @@ const Product: React.FC<ProductProps> = ({ product }) => {
         />
       </View>
       <View style={styles.bottomContent}>
-        <Text numberOfLines={2} style={[styles.title, { color: colors.text }]}>
+        <Typography numberOfLines={2} style={styles.title}>
           {name}
-        </Text>
-        <Text style={[styles.priceText, { color: colors.text }]}>${price}</Text>
+        </Typography>
+        <Typography style={styles.priceText}>{priceText}</Typography>
       </View>
     </TouchableOpacity>
   );
